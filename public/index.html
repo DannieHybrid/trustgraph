@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TrustGraph Viewer</title>
+  </head>
+  <body>
+    <h2>TrustGraph Explorer</h2>
+
+    <input id="subject" placeholder="Enter subject e.g. Product:B123" />
+    <button onclick="load()">Explore</button>
+
+    <pre id="output"></pre>
+
+    <script>
+      async function load() {
+        const subject = document.getElementById("subject").value;
+        const res = await fetch(`/graph/explore/${subject}`);
+        const data = await res.json();
+
+        document.getElementById("output").textContent = JSON.stringify(
+          data,
+          null,
+          2
+        );
+      }
+    </script>
+  </body>
+</html>
